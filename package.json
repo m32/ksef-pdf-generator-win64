@@ -2,13 +2,12 @@
   "name": "@akmf/ksef-fe-invoice-converter",
   "version": "0.0.32",
   "scripts": {
-    "dev": "vite --mode public --config vite.config.ts",
     "build": "vite build --mode production",
     "build:cli": "tsc -p tsconfig.cli.json",
     "build:cli:minify": "node scripts/minify-cli.cjs",
     "build:bundle": "node scripts/create-bundle.cjs",
     "build:exe": "npm run build:cli && pkg dist-cli/cli.js --targets node18-win-x64 --output ksef-pdf-generator.exe",
-    "type": "tsc -p src/app-public/tsconfig.json --noEmit",
+    "type": "tsc -p tsconfig.json --noEmit",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:ci": "vitest run --coverage"

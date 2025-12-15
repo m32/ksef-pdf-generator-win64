@@ -17,6 +17,6 @@
     }
   },
   "include": ["src/cli.ts", "src/node-helpers.ts", "src/lib-public/**/*", "src/shared/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "src/app-public/**/*", "src/app-private/**/*"]
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "src/app-private/**/*"]
 }
 

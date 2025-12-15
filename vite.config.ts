@@ -4,10 +4,9 @@ import dts from 'vite-plugin-dts';
 
 export default defineConfig(({ mode }) => {
   const libRoot = 'src';
-  const appRoot = 'src/app-public';
 
   return {
-    root: mode === 'production' ? '' : appRoot,
+    root: '',
     build: {
       lib: {
         name: 'ksef-fe-invoice-converter',
@@ -16,7 +15,7 @@ export default defineConfig(({ mode }) => {
         emptyOutDir: true,
         formats: ['es', 'umd'],
         rollupOptions: {
-          external: [/\.spec\.ts$/, /\.test\.ts$/, 'src/app-private', 'src/app-public'],
+          external: [/\.spec\.ts$/, /\.test\.ts$/, 'src/app-private'],
         },
       },
     },
@@ -43,7 +42,6 @@ export default defineConfig(({ mode }) => {
         entryRoot: libRoot,
         insertTypesEntry: true,
         outDir: path.resolve(__dirname, 'dist'),
-        exclude: ['src/app-public'],
       }),
     ],
 
