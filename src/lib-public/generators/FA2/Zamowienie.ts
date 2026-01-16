@@ -5,6 +5,8 @@ import {
   formatText,
   getContentTable,
   getTable,
+  getTStawkaPodatku,
+  getValue,
 } from '../../../shared/PDF-functions';
 import { HeaderDefine } from '../../../shared/types/pdf-types';
 import { TRodzajFaktury } from '../../../shared/consts/const';
@@ -28,6 +30,9 @@ export function generateZamowienie(
   const orderTable: Record<string, FP>[] = getTable(orderData?.ZamowienieWiersz).map((el, index) => {
     if (!el.NrWierszaZam._text) {
       el.NrWierszaZam._text = (index + 1).toString();
+    }
+    if (getValue(el.P_12)) {
+      el.P_12._text = getTStawkaPodatku(getValue(el.P_12) as string, 2);
     }
     return el;
   });
@@ -56,6 +61,7 @@ export function generateZamowienie(
     { name: 'P_11NettoZ', title: 'Wartość sprzedaży netto', format: formatAbs, width: 'auto' },
     { name: 'P_11VatZ', title: 'Kwota podatku', format: formatAbs, width: 'auto' },
   ];
+
   const definedHeader2: HeaderDefine[] = [
     { name: 'UU_IDZ', title: 'Numer umowy / Zamów.', format: FormatTyp.Default, width: 'auto' },
     { name: 'GTINZ', title: 'GTIN', format: FormatTyp.Default, width: 'auto' },

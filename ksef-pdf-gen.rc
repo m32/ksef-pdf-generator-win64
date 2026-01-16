@@ -1,0 +1,28 @@
+1 VERSIONINFO
+FILEVERSION 999,888,777,1
+PRODUCTVERSION 999,888,777,0
+FILEOS 0x4
+FILETYPE 0x2
+{
+BLOCK "StringFileInfo"
+{
+	BLOCK "041504E2"
+	{
+		VALUE "CompanyName", "Proman"
+		VALUE "FileDescription", "Generator PDF faktur KSeF"
+		VALUE "FileVersion", "999.888.777.1"
+		VALUE "LegalCopyright", "Proman"
+		VALUE "OriginalFilename", "KSeF-PDFGen.exe"
+		VALUE "ProductName", "Ekonom"
+		VALUE "ProductVersion", "999.888.777"
+		VALUE "InternalName", "KSeF-PDFGen"
+	}
+}
+
+BLOCK "VarFileInfo"
+{
+	VALUE "Translation", 0x0415 0x04E2  
+}
+}
+
+
