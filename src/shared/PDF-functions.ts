@@ -17,7 +17,7 @@ import {
   TStawkaPodatku_FA2,
   TStawkaPodatku_FA3,
 } from './consts/const';
-import {formatDateTime, formatTime, getFormaPlatnosciString} from './generators/common/functions';
+import { formatDateTime, formatTime, getFormaPlatnosciString } from './generators/common/functions';
 import { HeaderDefine, PdfFP, PdfOptionField } from './types/pdf-types';
 import { FP } from '../lib-public/types/fa3.types';
 import { DifferentValues, FilteredKeysOfValues, TypesOfValues } from './types/universal.types';
@@ -516,7 +516,7 @@ export function getKraj(code: string): string {
   return code;
 }
 
-export function getTStawkaPodatku(code: string, version: 1 | 2 | 3): string {
+export function getTStawkaPodatku(code: string, version: 1 | 2 | 3, P_PMarzy?: string): string {
   let TStawkaPodatkuVersioned: Record<string, string> = {};
 
   switch (version) {
@@ -529,6 +529,9 @@ export function getTStawkaPodatku(code: string, version: 1 | 2 | 3): string {
     case 3:
       TStawkaPodatkuVersioned = TStawkaPodatku_FA3;
       break;
+  }
+  if (!code && P_PMarzy === '1') {
+    return 'marża';
   }
 
   if (TStawkaPodatkuVersioned[code]) {

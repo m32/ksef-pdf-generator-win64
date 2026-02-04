@@ -13,7 +13,8 @@ vi.mock('../../../shared/PDF-functions', () => ({
   getContentTable: vi.fn(),
   getTable: vi.fn(),
   getValue: vi.fn(),
-  getTStawkaPodatku: vi.fn()
+  getTStawkaPodatku: vi.fn(),
+  getDifferentColumnsValue: vi.fn(),
 }));
 
 describe(generateWiersze.name, () => {
@@ -61,6 +62,7 @@ describe(generateWiersze.name, () => {
     vi.mocked(PDFFunctions.createHeader).mockReturnValue(['Header'] as any);
     vi.mocked(PDFFunctions.createSection).mockReturnValue({ section: 'content' } as any);
     vi.mocked(PDFFunctions.createLabelTextArray).mockReturnValue(['Label', 'Value'] as any);
+    vi.mocked(PDFFunctions.getDifferentColumnsValue).mockReturnValue([]);
   };
 
   describe('when no invoice lines exist', () => {
@@ -71,6 +73,7 @@ describe(generateWiersze.name, () => {
         fieldsWithValue: [],
       });
       vi.mocked(PDFFunctions.getValue).mockReturnValue('0');
+      vi.mocked(PDFFunctions.getDifferentColumnsValue).mockReturnValue([]);
 
       const result = generateWiersze(mockFaVat);
 
@@ -108,7 +111,9 @@ describe(generateWiersze.name, () => {
       });
 
       it('should display "brutto" when P_11 is not in fieldsWithValue', () => {
-        vi.mocked(PDFFunctions.getTable).mockReturnValue([{ NrWierszaFa: { _text: '1' }, P_12: {_text: '23'}  }] as any);
+        vi.mocked(PDFFunctions.getTable).mockReturnValue([
+          { NrWierszaFa: { _text: '1' }, P_12: { _text: '23' } },
+        ] as any);
 
         vi.mocked(PDFFunctions.getContentTable).mockReturnValue({
           content: { table: {} } as any,
@@ -150,7 +155,9 @@ describe(generateWiersze.name, () => {
       });
 
       it('should generate two tables when fieldsWithValue.length > 8', () => {
-        vi.mocked(PDFFunctions.getTable).mockReturnValue([{ NrWierszaFa: { _text: '1' }, P_12: {_text: '23'}  }] as any);
+        vi.mocked(PDFFunctions.getTable).mockReturnValue([
+          { NrWierszaFa: { _text: '1' }, P_12: { _text: '23' } },
+        ] as any);
 
         vi.mocked(PDFFunctions.getContentTable)
           .mockReturnValueOnce({
@@ -177,7 +184,9 @@ describe(generateWiersze.name, () => {
       });
 
       it('should not add second table if it has only 1 field with value', () => {
-        vi.mocked(PDFFunctions.getTable).mockReturnValue([{ NrWierszaFa: { _text: '1' }, P_12: {_text: '23'} }] as any);
+        vi.mocked(PDFFunctions.getTable).mockReturnValue([
+          { NrWierszaFa: { _text: '1' }, P_12: { _text: '23' } },
+        ] as any);
 
         vi.mocked(PDFFunctions.getContentTable)
           .mockReturnValueOnce({
