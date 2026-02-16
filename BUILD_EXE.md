@@ -25,8 +25,6 @@
 
 ### Użycie pliku .exe (Windows)
 
-Najprostszy sposób na Windows - użyj pliku `ksef-pdf-generator.bat`:
-
 #### Generowanie faktury PDF:
 ```bash
 ksef-pdf-generator.exe -i invoice.xml -o invoice.pdf -t invoice --nrKSeF "123-2025-ABC" --qrCode "https://example.com/qr"
