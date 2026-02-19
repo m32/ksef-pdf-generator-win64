@@ -4,6 +4,18 @@ Biblioteka do generowania wizualizacji PDF faktur oraz UPO na podstawie plików 
 
 ---
 
+## 0. Docker ELF
+
+Do kompilacji potrzebny jest tylko docker.
+
+./DockerBuild build # stworzy obraz dockera o nazwie node-app
+
+./DockerBuild install # zainstaluje brakujące pakiety (w bieżącym katalogu)
+
+./DockerBuild compile # utworzy KSeF-PDFGen (w bieżącym katalogu)
+
+---
+
 ## 0. EXE
 
 Plik EXE dołączany jest do publikowanych [wydań (releases)](https://github.com/Dzyszla/ksef-pdf-generator-win64/releases) jako załącznik.
